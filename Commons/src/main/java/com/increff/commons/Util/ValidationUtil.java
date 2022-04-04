@@ -22,7 +22,7 @@ public class ValidationUtil {
             throw new ApiException(entity+" should be greater than zero");
         }
         if(qty>SEQ_MAX_VAL){
-            throw new ApiException(entity+" exceeds limit "+SEQ_MAX_VAL);
+            throw new ApiException(entity+" should be less than "+SEQ_MAX_VAL);
         }
     }
 
@@ -51,26 +51,24 @@ public class ValidationUtil {
             index++;
         }
         if(indexes.size()>0){
-            throw new ApiException(ErrorData.convert(entity+" are empty at indexes: ", indexes));
+            throw new ApiException(ErrorData.convert("Empty "+entity+" at indexes: ", indexes));
         }
     }
 
 
     public static <T>void checkDuplicates(List<T> inList, String entity) throws ApiException {
-        List<Long> indexes = new ArrayList<>();
+        List<T> objs = new ArrayList<>();
         Set<T> entities = new HashSet<>();
-        Long index=1L;
         for(T obj:inList){
             if(!entities.contains(obj)){
                 entities.add(obj);
             }
             else{
-                indexes.add(index);
+                objs.add(obj);
             }
-            index++;
         }
-        if(indexes.size()>0){
-            throw new ApiException(ErrorData.convert(entity+ " are being repeated at indexes: ", indexes));
+        if(objs.size()>0){
+            throw new ApiException(ErrorData.convert("Duplicate "+entity+ ": ", objs));
         }
     }
 }

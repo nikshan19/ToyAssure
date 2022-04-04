@@ -22,4 +22,11 @@ public class ConstantNames {
     public static final Long SEQ_MAX_VAL = 5000L;
     public static final Long PARTITION_SIZE = 5000L;
     public static final Long MAX_DAYS_DIFFERENCE = 30L;
+    public static final String MAX_DESCRIPTION_STRING = "wwwwwwwwwwwww" +
+            "wwwwwggggggggggggjhhvgggggjhhhgggggggggjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj" +
+            "alalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalala" +
+            "ALALALALAlalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalal" +
+            "llalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalallal" +
+            "lalalalalalalalllalallalallalalalalalallalalalalallaalallalalallalalallalalalalallalalalalallalall" +
+            "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg";
 }

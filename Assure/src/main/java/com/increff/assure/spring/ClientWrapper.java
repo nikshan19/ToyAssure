@@ -1,4 +1,4 @@
-package com.increff.assure.service;
+package com.increff.assure.spring;
 
 import com.increff.assure.spring.RestTemplateUrls;
 import com.increff.commons.Data.ChannelInvoiceData;

@@ -56,7 +56,7 @@ public class BinDtoTest extends AbstractUnitTest {
             dto.add(binCount);
             fail();
         } catch (ApiException e) {
-            assertEquals("Bins count exceeds limit "+SEQ_MAX_VAL, e.getMessage());
+            assertEquals("Bins count should be less than "+SEQ_MAX_VAL, e.getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ public class BinDtoTest extends AbstractUnitTest {
 
     }
 
-    /* when all inputs are in lower case and have not white spaces.*/
+    /* when all inputs are in lower case and donot have white spaces.*/
     @Test
     public void testUploadBinSkuValid1() throws ApiException {
         List<BinSkuPojo> binSkuPojos_before = binSkuDao.selectAll();
@@ -171,7 +171,7 @@ public class BinDtoTest extends AbstractUnitTest {
             dto.uploadBinSku(form);
             fail();
         }catch (ApiException e){
-            assertEquals("Bin with these ID(s) doesn't exist."+" ["+67676767L+"]", e.getMessage());
+            assertEquals("Bin doesn't exist with ID(s): "+" ["+67676767L+"]", e.getMessage());
         }
 
 
@@ -197,7 +197,7 @@ public class BinDtoTest extends AbstractUnitTest {
             dto.uploadBinSku(form);
             fail();
         }catch (ApiException e){
-            assertEquals("Client SKU ID(s) of these indexes are empty"+" ["+1+"]", e.getMessage());
+            assertEquals("Empty Client SKU ID(s) at: "+" ["+1+"]", e.getMessage());
         }
 
     }
@@ -248,7 +248,7 @@ public class BinDtoTest extends AbstractUnitTest {
             dto.uploadBinSku(form);
             fail();
         }catch (ApiException e){
-            assertEquals("These Client SKU ID(s) don't exist"+" [\""+"hgdhsgfhsdgsgfsdfgs552"+"\"]", e.getMessage());
+            assertEquals("Invalid Client SKU ID(s): "+" [\""+"hgdhsgfhsdgsgfsdfgs552"+"\"]", e.getMessage());
         }
     }
 

@@ -5,9 +5,13 @@ import com.increff.assure.pojo.*;
 import com.increff.commons.Constants.Invoice;
 import com.increff.commons.Constants.OrderStatus;
 import com.increff.commons.Constants.Party;
+import com.increff.commons.Data.ChannelInvoiceData;
+import com.increff.commons.Data.InvoiceResponse;
 import com.increff.commons.Form.*;
+import io.swagger.models.auth.In;
 import org.hibernate.criterion.Order;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -239,7 +243,31 @@ public class TestPojo {
             return form;
         }
 
+        public static ChannelInvoiceData createChannelInvoiceData(String channelName, Long orderId,
+                                                                  String clientName, String customerName,
+                                                                  Double total){
 
+            ChannelInvoiceData data = new ChannelInvoiceData();
+            data.setProductDataList(null);
+            data.setChannelName(channelName);
+            data.setOrderId(orderId);
+            data.setClientName(clientName);
+            data.setTotal(total);
+            data.setCustomerName(customerName);
+            return data;
+        }
+
+        public static OrderSearchProperties createOrderSearchProperties(OrderStatus orderStatus, ZonedDateTime startDate,
+                                                                        ZonedDateTime endDate, String channelOrderId,
+                                                                        Long channelId){
+            OrderSearchProperties properties = new OrderSearchProperties();
+            properties.setOrderStatus(orderStatus);
+            properties.setStartDate(startDate);
+            properties.setEndDate(endDate);
+            properties.setChannelOrderId(channelOrderId);
+            properties.setChannelId(channelId);
+            return properties;
+        }
 
 
 

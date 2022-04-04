@@ -17,6 +17,8 @@ public class ChannelInvoiceData {
 
     @XmlElement(name = "orderId")
     private Long orderId;
+    @XmlElement(name = "channelOrderId")
+    private String channelOrderId;
     @XmlElement(name = "channelName")
     private String channelName;
     @XmlElement(name = "clientName")

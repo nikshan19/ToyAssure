@@ -164,7 +164,7 @@ public class ChannelListingDtoTest extends AbstractUnitTest {
             dto.addChannelListings(uploadForm);
             fail();
         }catch (ApiException e){
-            assertEquals("Client SKU ID(s) are empty at indexes: "+" ["+1+"]", e.getMessage());
+            assertEquals("Empty Client SKU ID(s) at indexes: "+" ["+1+"]", e.getMessage());
         }
     }
 
@@ -190,7 +190,7 @@ public class ChannelListingDtoTest extends AbstractUnitTest {
             dto.addChannelListings(uploadForm);
             fail();
         }catch (ApiException e){
-            assertEquals("Channel SKU ID(s) are empty at indexes: "+" ["+1+"]", e.getMessage());
+            assertEquals("Empty Channel SKU ID(s) at indexes: "+" ["+1+"]", e.getMessage());
         }
     }
 
@@ -218,7 +218,7 @@ public class ChannelListingDtoTest extends AbstractUnitTest {
             dto.addChannelListings(uploadForm);
             fail();
         }catch (ApiException e){
-            assertEquals("Channel SKU ID(s) are being repeated at indexes: "+" ["+2+"]", e.getMessage());
+            assertEquals("Duplicate Channel SKU ID(s): "+" [\""+form.getChannelSkuId()+"\"]", e.getMessage());
         }
     }
 
@@ -247,8 +247,7 @@ public class ChannelListingDtoTest extends AbstractUnitTest {
             dto.addChannelListings(uploadForm);
             fail();
         }catch (ApiException e){
-            assertEquals("Combination of Client ID: "+partyPojo.getPartyId()+", Channel ID: "+channelPojo.getId()
-                    +" and" + " these Channel SKU ID(s) already exist"+ " [\""+"chskuid1"+"\"]", e.getMessage());
+            assertEquals("Channel SKU ID(s) already exist(s): "+ " [\""+"chskuid1"+"\"]", e.getMessage());
         }
     }
 

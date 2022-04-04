@@ -12,4 +12,12 @@ public class RestTemplateUrls {
     }
 
     public String getAssureSearchOrderUri(){return properties.getServerUri()+"orders/search";}
+
+    public String getAssureAllChannelsUri(){
+        return properties.getServerUri()+"channels";
+    }
+
+    public String getAssureAllPartiesUri(){
+        return properties.getServerUri()+"parties";
+    }
 }

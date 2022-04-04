@@ -45,7 +45,7 @@ public class PartyDto extends AbstractDto {
         return listPojo.stream().map(x->convert(x,PartyData.class)).collect(Collectors.toList());
     }
 
-    public void checkName(PartyForm form) throws ApiException {
+    private void checkName(PartyForm form) throws ApiException {
         if(form.getPartyName().trim().isEmpty()){
             throw new ApiException("Party Name must not be empty");
         }

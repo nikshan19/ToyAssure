@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <items>
-    <orderId>752</orderId>
-    <channelName>internal</channelName>
+    <orderId>1953</orderId>
+    <channelOrderId>6767676</channelOrderId>
+    <channelName>myntra</channelName>
     <clientName>puma</clientName>
     <customerName>nikshan</customerName>
-    <dateTime>31-03-2022 18:24</dateTime>
+    <dateTime>04-04-2022 12:34</dateTime>
     <total>100.0</total>
     <item>
         <productName>p1</productName>
         <clientSkuId>cskuid1</clientSkuId>
-        <quantity>2</quantity>
-        <sellingPricePerUnit>10.0</sellingPricePerUnit>
-    </item>
-    <item>
-        <productName>p2</productName>
-        <clientSkuId>cskuid2</clientSkuId>
-        <quantity>8</quantity>
+        <quantity>10</quantity>
         <sellingPricePerUnit>10.0</sellingPricePerUnit>
     </item>
 </items>

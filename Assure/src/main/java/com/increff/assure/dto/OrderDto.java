@@ -232,7 +232,7 @@ public class OrderDto extends AbstractDto {
         List<String> differences = clientSkuIds.stream().filter(element -> !finalClientSkuIds.contains(element))
                 .collect(Collectors.toList());
         if(differences.size()>0){
-            throw new ApiException(ErrorData.convert("Client SKU ID(s) don't exist", differences));
+            throw new ApiException(ErrorData.convert("Client SKU ID(s) not found: ", differences));
         }
         return  pojoList.stream().collect(Collectors.toMap(value ->value.getClientSkuId(), value->value.getGlobalSkuId()));
 
@@ -246,7 +246,7 @@ public class OrderDto extends AbstractDto {
         List<String> differences = channelSkuIds.stream().filter(element -> !finalChannelSkuIds.contains(element))
                 .collect(Collectors.toList());
         if(differences.size()>0){
-            throw new ApiException(ErrorData.convert("Channel SKU ID(s) don't exist", differences));
+            throw new ApiException(ErrorData.convert("Channel SKU ID(s) not found: ", differences));
         }
         return pojoList.stream().collect(Collectors.toMap(value ->value.getChannelSkuId(), value->value.getGlobalSkuId()));
     }

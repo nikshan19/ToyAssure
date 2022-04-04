@@ -54,7 +54,7 @@ public class ProductService extends AbstarctService{
     public ProductPojo getCheck(Long id) throws ApiException {
         ProductPojo p = dao.select(id);
         if (p == null) {
-            throw new ApiException("party with given id: "+ id+ " doesn't exist");
+            throw new ApiException("Party with given id: "+ id+ " doesn't exist");
         }
         return p;
     }

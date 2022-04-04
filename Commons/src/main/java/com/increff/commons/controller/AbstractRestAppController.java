@@ -19,8 +19,7 @@ public class AbstractRestAppController extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({ApiException.class})
     @ResponseBody
-    protected MessageData handleApiException(HttpServletRequest req, ApiException e){
-        e.setStackTrace(e.getStackTrace());
+    public MessageData handleApiException(HttpServletRequest req, ApiException e){
         MessageData data = new MessageData();
         data.setMessage(e.getMessage());
         return data;
@@ -39,7 +38,7 @@ public class AbstractRestAppController extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({Throwable.class})
     @ResponseBody
-    protected MessageData handleUnknownException(HttpServletRequest req, Throwable t){
+    public MessageData handleUnknownException(HttpServletRequest req, Throwable t){
         t.setStackTrace(t.getStackTrace());
         MessageData data = new MessageData();
         data.setMessage("Internal error");

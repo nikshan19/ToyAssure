@@ -66,7 +66,7 @@ public class ProductDto extends AbstractDto {
         return list.stream().map(x->convert(x,ProductData.class)).collect(Collectors.toList());
     }
 
-    public void checkClient(Long id, List<ProductPojo> pojoList) throws ApiException {
+    private void checkClient(Long id, List<ProductPojo> pojoList) throws ApiException {
         partyService.getCheck(id);
         for(ProductPojo p: pojoList){
             p.setClientId(id);
@@ -74,7 +74,7 @@ public class ProductDto extends AbstractDto {
 
     }
 
-    public void checkForm(UpdateProductForm form) throws ApiException {
+    private void checkForm(UpdateProductForm form) throws ApiException {
 
         if(form.getBrandId().trim().isEmpty()){
             throw new ApiException("Brand ID must not be empty");
@@ -86,7 +86,7 @@ public class ProductDto extends AbstractDto {
             throw new ApiException("Product description must not be empty");
         }
         else if(form.getDescription().length()>255){
-            throw new ApiException("Length exceeds 255 characters of Product description");
+            throw new ApiException("Description length must not be greater than 255");
         }
     }
 
@@ -100,7 +100,7 @@ public class ProductDto extends AbstractDto {
             }
         }
         if(indexes.size()>0){
-            throw new ApiException(ErrorData.convert("Product Name(s) of these rows are blank", indexes));
+            throw new ApiException(ErrorData.convert("Empty Product Name(s) at: ", indexes));
         }
 
     }
@@ -115,7 +115,7 @@ public class ProductDto extends AbstractDto {
             }
         }
         if(indexes.size()>0){
-            throw new ApiException(ErrorData.convert("Brand ID(s) of these rows are blank", indexes));
+            throw new ApiException(ErrorData.convert("Empty Brand ID(s) at: ", indexes));
         }
     }
 
@@ -142,10 +142,10 @@ public class ProductDto extends AbstractDto {
 
         }
         if(indexes.size()>0){
-            throw new ApiException(ErrorData.convert("Product Description(s) of these rows are blank", indexes));
+            throw new ApiException(ErrorData.convert("Empty Product Description(s) at: ", indexes));
         }
         if(indexes2.size()>0){
-            throw new ApiException(ErrorData.convert("Length exceeds 255 of Product Description(s)", indexes));
+            throw new ApiException(ErrorData.convert("Description length greater than 255 at: ", indexes2));
         }
     }
 
@@ -159,13 +159,13 @@ public class ProductDto extends AbstractDto {
             }
         }
         if(indexes.size()>0){
-            throw new ApiException(ErrorData.convert("Client SKU ID(s) of these rows are blank", indexes));
+            throw new ApiException(ErrorData.convert("Empty Client SKU ID(s) at: ", indexes));
         }
     }
 
 
 
-    public void validateUploadProductForm(UploadProductForm uploadProductForm) throws ApiException {
+    private void validateUploadProductForm(UploadProductForm uploadProductForm) throws ApiException {
         validateProductName(uploadProductForm.getFormList());
         validateBrandId(uploadProductForm.getFormList());
         validateProductDesc(uploadProductForm.getFormList());
@@ -181,7 +181,7 @@ public class ProductDto extends AbstractDto {
         List<String> finalClientSkuIds = pojoList.stream().map(ProductPojo::getClientSkuId).collect(Collectors.toList());
 
         if(finalClientSkuIds.size()>0){
-            throw new ApiException(ErrorData.convert("Client SKU ID(s) already exist", finalClientSkuIds));
+            throw new ApiException(ErrorData.convert("Client SKU ID(s) already exist: ", finalClientSkuIds));
         }
 
     }

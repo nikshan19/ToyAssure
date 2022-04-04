@@ -1,8 +1,10 @@
 package com.increff.assure.spring;
 
 import com.increff.assure.spring.RestTemplateUrls;
+import com.increff.commons.Data.ChannelData;
 import com.increff.commons.Data.InvoiceData;
 import com.increff.commons.Data.OrderData;
+import com.increff.commons.Data.PartyData;
 import com.increff.commons.Form.OrderSearchForm;
 import com.increff.commons.Form.OrderSearchFormChannelApp;
 import com.increff.commons.Form.OrderWithChannelSkuIdForm;
@@ -26,5 +28,13 @@ public class ClientWrapper {
 
     public List<OrderData> postForOrderSearch(OrderSearchForm form){
         return restTemplate.postForObject(restTemplateUrls.getAssureSearchOrderUri(), form, List.class);
+    }
+
+    public List<ChannelData> getForChannels(){
+        return restTemplate.getForObject(restTemplateUrls.getAssureAllChannelsUri(), List.class);
+    }
+
+    public List<PartyData> getAllParties(){
+        return restTemplate.getForObject(restTemplateUrls.getAssureAllPartiesUri(), List.class);
     }
 }

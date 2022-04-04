@@ -16,8 +16,8 @@ import static com.increff.commons.Util.ConvertUtil.convert;
 
 public class InvoiceUtil {
 
-    public static InvoiceData convertToInvoiceData(String channelName, String clientName, String customerName,
-                                                   List<OrderItemPojo> orderItemPojos, Map<Long,
+    public static InvoiceData convertToInvoiceData(String channelName,String channelOrderId, String clientName,
+                                                   String customerName, List<OrderItemPojo> orderItemPojos, Map<Long,
             ProductPojo> globalSkuToProduct) throws Exception {
         List<InvoiceProductData> invoiceProductDataList = new ArrayList<>();
 
@@ -34,6 +34,7 @@ public class InvoiceUtil {
 
         InvoiceData invoiceData = new InvoiceData();
         invoiceData.setOrderId(orderItemPojos.get(0).getOrderId());
+        invoiceData.setChannelOrderId(channelOrderId);
         invoiceData.setChannelName(channelName);
         invoiceData.setClientName(clientName);
         invoiceData.setCustomerName(customerName);
@@ -43,7 +44,8 @@ public class InvoiceUtil {
         return invoiceData;
     }
 
-    public static ChannelInvoiceData convertToChannelInvoiceData(String channelName, String clientName, String customerName,
+    public static ChannelInvoiceData convertToChannelInvoiceData(String channelName, String channelOrderId,
+                                                                 String clientName, String customerName,
                                                    List<OrderItemPojo> orderItemPojos, Map<Long,
             ProductPojo> globalSkuToProduct, Map<Long, String> globalSkuToChannelSku) throws Exception {
         List<ChannelInvoiceProductData> channelInvoiceProductDataList = new ArrayList<>();
@@ -61,6 +63,7 @@ public class InvoiceUtil {
 
         ChannelInvoiceData invoiceData = new ChannelInvoiceData();
         invoiceData.setOrderId(orderItemPojos.get(0).getOrderId());
+        invoiceData.setChannelOrderId(channelOrderId);
         invoiceData.setChannelName(channelName);
         invoiceData.setClientName(clientName);
         invoiceData.setCustomerName(customerName);

@@ -49,8 +49,12 @@ public class ChannelDto extends AbstractDto {
         return list.stream().map(x->convert(x,ChannelData.class)).collect(Collectors.toList());
     }
 
-    private void checkDefault(ChannelForm form){
-        if(form.getChannelName() == null || form.getChannelName().isEmpty()){
+    private void checkDefault(ChannelForm form) throws ApiException {
+        if(form.getChannelName()==null){
+            throw new ApiException("Channel Name must not br null");
+        }
+
+        if(form.getChannelName().isEmpty()){
             form.setChannelName("internal");
         }
         if(form.getInvoiceType() ==null){

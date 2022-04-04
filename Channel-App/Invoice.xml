@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <items>
-    <orderId>1090909</orderId>
-    <channelName>flipkart</channelName>
+    <orderId>1954</orderId>
+    <channelOrderId>6767676</channelOrderId>
+    <channelName>amazon</channelName>
     <clientName>puma</clientName>
     <customerName>nikshan</customerName>
-    <dateTime>2022-04-01</dateTime>
+    <dateTime>04-04-2022 12:35</dateTime>
     <total>100.0</total>
+    <item>
+        <productName>p1</productName>
+        <channelSkuId>chskuid1</channelSkuId>
+        <quantity>10</quantity>
+        <sellingPricePerUnit>10.0</sellingPricePerUnit>
+    </item>
 </items>

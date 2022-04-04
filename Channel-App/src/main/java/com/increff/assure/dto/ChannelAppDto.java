@@ -3,9 +3,7 @@ package com.increff.assure.dto;
 //import com.increff.channelapp.spring.RestTemplateUrls;
 import com.increff.assure.spring.ApplicationProperties;
 import com.increff.assure.spring.ClientWrapper;
-import com.increff.commons.Data.ChannelInvoiceData;
-import com.increff.commons.Data.InvoiceData;
-import com.increff.commons.Data.OrderData;
+import com.increff.commons.Data.*;
 import com.increff.commons.Form.OrderSearchForm;
 import com.increff.commons.Form.OrderSearchFormChannelApp;
 import com.increff.commons.Form.OrderWithChannelSkuIdForm;
@@ -36,6 +34,14 @@ public class ChannelAppDto {
     }
     public List<OrderData> searchOrder(OrderSearchForm form){
         return clientWrapper.postForOrderSearch(form);
+    }
+
+    public List<ChannelData> getAllChannels(){
+        return clientWrapper.getForChannels();
+    }
+
+    public List<PartyData> getAllParties(){
+        return clientWrapper.getAllParties();
     }
 
 

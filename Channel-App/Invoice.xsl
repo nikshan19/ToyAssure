@@ -53,7 +53,7 @@
 								<fo:table-cell>
 									<fo:block padding-top="15pt" padding-bottom="2pt" font-size="10pt" font-family="Helvetica"
 										color="black" font-weight="bold" space-after="5mm" text-align="right">
-										Date and Time:
+										Generation Time:
 										<xsl:value-of select="dateTime" />
 									</fo:block>
 								</fo:table-cell>
@@ -93,6 +93,16 @@
 
                                 </fo:table-cell>
 
+                                <fo:table-cell>
+                                  <fo:block padding-top="2pt" padding-bottom="10pt" font-size="10pt"
+                                    font-family="Helvetica" color="black" font-weight="bold"
+                                    space-after="5mm" text-align="right">
+                                    Channel Order ID:
+                                    <xsl:value-of select="channelOrderId" />
+                                  </fo:block>
+
+                                </fo:table-cell>
+
 							</fo:table-row>
 
 
@@ -128,11 +138,11 @@
 								</fo:table-cell>
 									<fo:table-cell
 									xsl:use-attribute-sets="tableBorder">
-									<fo:block font-weight="bold" text-align="right">Unit Price (Rs.)</fo:block>
+									<fo:block font-weight="bold" text-align="right">Selling Price</fo:block>
 								</fo:table-cell>
 								<fo:table-cell
 									xsl:use-attribute-sets="tableBorder">
-									<fo:block font-weight="bold" text-align="right">Amount (Rs.)</fo:block>
+									<fo:block font-weight="bold" text-align="right">Amount</fo:block>
 								</fo:table-cell>
 							</fo:table-header>
 							<fo:table-body>

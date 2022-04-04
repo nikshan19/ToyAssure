@@ -81,7 +81,7 @@ public class ChannelListingDto extends AbstractDto {
                 .collect(Collectors.toList());
 
         if(differences.size()>0){
-            throw new ApiException(ErrorData.convert("These Client SKU ID(s) don't exist", differences));
+            throw new ApiException(ErrorData.convert("Invalid Client SKU ID(s): ", differences));
         }
 
     }
@@ -91,8 +91,7 @@ public class ChannelListingDto extends AbstractDto {
         List<ChannelListingPojo> pojoList = service.getByClientIdChannelIdChannelSkuIds(clientId,channelId,initialChannelSkuIds);
         List<String> finalChannelSkuIds = pojoList.stream().map(ChannelListingPojo::getChannelSkuId).collect(Collectors.toList());
         if(finalChannelSkuIds.size()>0){
-            throw new ApiException(ErrorData.convert("Combination of Client ID: "+clientId+", Channel ID: "+channelId+" and" +
-                    " these Channel SKU ID(s) already exist", finalChannelSkuIds));
+            throw new ApiException(ErrorData.convert("Channel SKU ID(s) already exist(s): ", finalChannelSkuIds));
         }
     }
 

@@ -106,7 +106,7 @@ public class BinDto extends AbstractDto {
         List<Long> differences = initialBinIds.stream().filter(element -> !finalBinIds.contains(element)).collect(Collectors.toList());
 
         if(differences.size()>0){
-            throw new ApiException(ErrorData.convert("Bin with these ID(s) doesn't exist.",differences));
+            throw new ApiException(ErrorData.convert("Bin doesn't exist with ID(s): ",differences));
         }
     }
 
@@ -123,7 +123,7 @@ public class BinDto extends AbstractDto {
             index++;
         }
         if(indexes.size()>0){
-            throw new ApiException(ErrorData.convert("Client SKU ID(s) of these indexes are empty", indexes));
+            throw new ApiException(ErrorData.convert("Empty Client SKU ID(s) at: ", indexes));
         }
 
     }
@@ -139,7 +139,7 @@ public class BinDto extends AbstractDto {
         List<String> differences = initialClientSkuIds.stream().filter(element -> !finalClientSkuIds.contains(element)).collect(Collectors.toList());
 
         if(differences.size()>0){
-            throw new ApiException(ErrorData.convert("These Client SKU ID(s) don't exist", differences));
+            throw new ApiException(ErrorData.convert("Invalid Client SKU ID(s): ", differences));
         }
 
     }

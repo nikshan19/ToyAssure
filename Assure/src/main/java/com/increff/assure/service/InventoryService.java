@@ -23,6 +23,8 @@ public class InventoryService {
         InventoryPojo ip = new InventoryPojo();
         ip.setGlobalSkuId(globalSkuId);
         ip.setAvailableQty(qty);
+        ip.setAllocatedQty(0L);
+        ip.setFulfilledQty(0L);
         dao.insert(ip);
     }
 

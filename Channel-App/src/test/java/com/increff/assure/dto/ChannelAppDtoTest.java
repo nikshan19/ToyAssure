@@ -3,10 +3,13 @@ package com.increff.assure.dto;
 import com.increff.assure.spring.AbstractUnitTest;
 import com.increff.assure.spring.ApplicationProperties;
 import com.increff.assure.spring.ClientWrapper;
+import com.increff.commons.Constants.Invoice;
 import com.increff.commons.Constants.OrderStatus;
+import com.increff.commons.Constants.Party;
 import com.increff.commons.Data.ChannelData;
 import com.increff.commons.Data.ChannelInvoiceData;
 import com.increff.commons.Data.OrderData;
+import com.increff.commons.Data.PartyData;
 import com.increff.commons.Form.OrderSearchForm;
 import com.increff.commons.Form.OrderWithChannelSkuIdForm;
 import org.junit.Before;
@@ -56,6 +59,8 @@ public class ChannelAppDtoTest extends AbstractUnitTest {
 
         assertEquals("abc", data.getChannelOrderId());
         assertEquals(Long.valueOf(1), data.getChannelId());
+        //assert all the fields in order data.
+        //assert no of calls, form(arg captcha) with which we call assure.
 
     }
 
@@ -82,6 +87,30 @@ public class ChannelAppDtoTest extends AbstractUnitTest {
         assertEquals(Long.valueOf(4), finalData.get(0).getChannelId());
         assertEquals(OrderStatus.FULFILLED, finalData.get(0).getOrderStatus());
 
+    }
+
+    @Test
+    public void testGetAllChannels(){
+        ChannelData data = createChannelData(101L, "Rare", Invoice.InvoiceType.CHANNEL);
+        Mockito.when(clientWrapper.getForChannels()).thenReturn(Arrays.asList(data));
+
+        List<ChannelData> finalData = dto.getAllChannels();
+
+        assertEquals(Long.valueOf(101), finalData.get(0).getId());
+        assertEquals("Rare", finalData.get(0).getChannelName());
+        assertEquals(Invoice.InvoiceType.CHANNEL, finalData.get(0).getInvoiceType());
+    }
+
+    @Test
+    public void testGetAllParties(){
+        PartyData data = createPartyData(101L, "Adidas", Party.PartyType.CLIENT);
+        Mockito.when(clientWrapper.getAllParties()).thenReturn(Arrays.asList(data));
+
+        List<PartyData> finalData = dto.getAllParties();
+
+        assertEquals(Long.valueOf(101), finalData.get(0).getPartyId());
+        assertEquals("Adidas", finalData.get(0).getPartyName());
+        assertEquals(Party.PartyType.CLIENT, finalData.get(0).getPartyType());
     }
 
 }

@@ -1,6 +1,5 @@
 package com.increff.assure.spring;
 
-import com.increff.assure.service.ClientWrapper;
 import lombok.var;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lan="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="snippets.html :: name_head"></head>
+<head th:replace="snippets_order.html :: name_head"></head>
 <body>
 
-<nav th:replace="snippets.html :: name_navbar"></nav>
+<nav th:replace="snippets_order.html :: name_navbar"></nav>
 <header>
     <div class="toast align-items-center text-white border border-danger"
          style="position: fixed; background-color: rgb(196, 0, 0); z-index: 1056; top: 10px; right: 10px;"
@@ -15,23 +15,23 @@
 
 </header>
 
-<div class="container-fluid" style="position:absolute; width:100%;">
-    <label for="searchType" class="col-sm-2 col-form-label" style="position: absolute; top: 21%; right: 11%;">
-        <strong>Search By</strong></label>
-    <select class="selection"id="searchType" name="search-type"
-            style="position: absolute; top: 21%; right:7%; width:100px;">
-        <option id = "order" value="1">Order ID</option>
-        <option id = "other" value="2">Other</option>
-    </select>
-    <button type="button" class="btn btn-sm btn-outline-secondary mx-1" id = "change"
-            style="position: absolute; top: 21%; right:3%;">
-        Go</button>
+<!--<div class="container-fluid" style="position:absolute; width:100%;">-->
+<!--    <label for="searchType" class="col-sm-2 col-form-label" style="position: absolute; top: 21%; right: 11%;">-->
+<!--        <strong>Search By</strong></label>-->
+<!--    <select class="selection"id="searchType" name="search-type"-->
+<!--            style="position: absolute; top: 21%; right:7%; width:100px;">-->
+<!--        <option id = "order" value="1">Order ID</option>-->
+<!--        <option id = "other" value="2">Other</option>-->
+<!--    </select>-->
+<!--    <button type="button" class="btn btn-sm btn-outline-secondary mx-1" id = "change"-->
+<!--            style="position: absolute; top: 21%; right:3%;">-->
+<!--        Go</button>-->
 
-</div>
+<!--</div>-->
 
 
 
-<div class="container-fluid px-5 mt-1 pt-3">
+<div class="container-fluid px-5 mt-1 pt-3" style="width=100%;">
 
 
     <div style="width:1500px;">
@@ -42,60 +42,69 @@
 
     </div>
     <br>
+
+
     <div class="row">
         <div class="col-12">
 
+            <div class="tab">
+                <button class="tablinks active" onclick="openCity(event, 'Paris')">Order ID</button>
+                <button class="tablinks" onclick="openCity(event, 'London')">Others</button>
+            </div>
 
-            <form class="form-inline" id="order-search-form">
-                <div class="row">
-                    <div class="col">
-
-                        <label for="inputStartdate" class="col-sm-2 col-form-label" style="width:150px;">
-                            <strong>Start Date</strong></label>
+            <!-- Tab content -->
+            <div id="London" class="tabcontent">
+                <form class="form-inline" id="order-search-form">
+                    <div class="row">
                         <div class="col">
-                            <div class="input-group date" id="datepicker1">
-                                <input type="text" class="form-control" name="startDate"
-                                       id="inputStartdate" placeholder="Enter Start Date">
-                                <div class="input-group-append">
+
+                            <label for="inputStartdate" class="col-sm-2 col-form-label" style="width:150px;">
+                                <strong>Start Date</strong></label>
+                            <div class="col">
+                                <div class="input-group date" id="datepicker1">
+                                    <input type="text" class="form-control" name="startDate"
+                                           id="inputStartdate" placeholder="Enter Start Date">
+                                    <div class="input-group-append">
 										<span class="input-group-text bg-white"> <i
                                                 class="fa fa-calendar"></i>
 										</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <label for="inputEnddate" class="col-sm-2 col-form-label" style="width:150px;">
-                            <strong>End Date</strong></label>
                         <div class="col">
-                            <div class="input-group date" id="datepicker2">
-                                <input type="text" class="form-control" name="endDate"
-                                       id="inputEnddate" placeholder="Enter End Date">
-                                <div class="input-group-append">
+                            <label for="inputEnddate" class="col-sm-2 col-form-label" style="width:150px;">
+                                <strong>End Date</strong></label>
+                            <div class="col">
+                                <div class="input-group date" id="datepicker2">
+                                    <input type="text" class="form-control" name="endDate"
+                                           id="inputEnddate" placeholder="Enter End Date">
+                                    <div class="input-group-append">
 										<span class="input-group-text bg-white"> <i
                                                 class="fa fa-calendar"></i>
 										</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col">
-                        <label for="inputChannelId" class="col-sm-2 col-form-label" style="width:150px;">
-                            <strong>Channel Name</strong></label>
                         <div class="col">
-                            <div class="custom-select" style="width:300px;">
-                                <select class="selection"id="inputChannelId" name="channelId"></select>
+                            <label for="inputChannelId" class="col-sm-2 col-form-label" style="width:150px;">
+                                <strong>Channel Name</strong></label>
+                            <div class="col">
+                                <div class="custom-select" style="width:300px;">
+                                    <select class="selection"id="inputChannelId" name="channelId"></select>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col">
-                        <label for="inputChannelOrderIdSearch" class="col-sm-2 col-form-label" style="width:200px;">
-                            <strong>Channel Order Id</strong></label>
                         <div class="col">
-                            <input type="text" class="form-control" name="channelOrderId"
-                                   id="inputChannelOrderIdSearch" placeholder="Enter Channel Order ID">
+                            <label for="inputChannelOrderIdSearch" class="col-sm-2 col-form-label" style="width:200px;">
+                                <strong>Channel Order Id</strong></label>
+                            <div class="col">
+                                <input type="text" class="form-control" name="channelOrderId"
+                                       id="inputChannelOrderIdSearch" placeholder="Enter Channel Order ID">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -112,39 +121,47 @@
 
                         </div>
                     </div>
-                </div>
-                <br>
 
-                <button type="button" class="btn btn-sm btn-outline-primary mr-2"
-                        id="search-orders">Search</button>
-                <button type="button" class="btn btn-sm btn-outline-dark mx-1"
-                        onclick="location.reload()">Refresh</button>
-
-            </form>
-
-            <form>
-                <div id="select-by-orderId" style="display:none;">
-                <div class="col">
-                    <label for="inputOrderIdSearch" class="col-sm-2 col-form-label" style="width:150px;">
-                        <strong>Order ID</strong>></label>
-                    <div class="col">
-                        <input type="text" class="form-control" name="OrderId"
-                               id="inputOrderIdSearch" placeholder="Order Id" style="width:250px;">
-                    </div>
-                </div>
                     <br>
+
                     <button type="button" class="btn btn-sm btn-outline-primary mr-2"
-                            id="search-orders2">Search</button>
+                            id="search-orders">Search</button>
                     <button type="button" class="btn btn-sm btn-outline-dark mx-1"
                             onclick="location.reload()">Refresh</button>
 
-                </div>
-            </form>
+                </form>
+            </div>
+
+            <div id="Paris" class="tabcontent">
+                <form>
+                    <div id="select-by-orderId" >
+                        <div class="col">
+                            <label for="inputOrderIdSearch" class="col-sm-2 col-form-label" style="width:150px;">
+                                <strong>Order ID</strong></label>
+                            <div class="col">
+                                <input type="text" class="form-control" name="OrderId"
+                                       id="inputOrderIdSearch" placeholder="Order Id" style="width:250px;">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-sm btn-outline-primary mr-2"
+                                id="search-orders2">Search</button>
+                        <button type="button" class="btn btn-sm btn-outline-dark mx-1"
+                                onclick="location.reload()">Refresh</button>
+
+                    </div>
+                </form>
+            </div>
+
+
+
+
 
 
             <br> <br>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-12 table-responsive">

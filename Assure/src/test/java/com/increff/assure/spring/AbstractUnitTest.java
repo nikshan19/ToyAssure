@@ -22,8 +22,8 @@ import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringTestConfig.class, loader = AnnotationConfigWebContextLoader.class)
-@WebAppConfiguration("src/test/webapp")
+@ContextConfiguration(classes = SpringTestConfig.class)
+@WebAppConfiguration
 @Transactional
 public abstract class AbstractUnitTest {
 

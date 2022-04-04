@@ -60,10 +60,13 @@ public class OrderDtoTest extends AbstractUnitTest {
                 10.0 ,partyPojoClient.getPartyId());
         productDao.insert(productPojo);
 
-        List<BinPojo> pojoList = binDao.insert(Arrays.asList(new BinPojo[]{new BinPojo()}));
+        List<BinPojo> pojoList = binDao.insert(Arrays.asList(new BinPojo[]{new BinPojo()}));//Collection.singleton list.
 
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
@@ -101,6 +104,9 @@ public class OrderDtoTest extends AbstractUnitTest {
 
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId("  CSKiUd1      "
                 , 40L, productPojo.getProductMrp());
@@ -170,6 +176,9 @@ public class OrderDtoTest extends AbstractUnitTest {
 
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
@@ -252,7 +261,7 @@ public class OrderDtoTest extends AbstractUnitTest {
             dto.addOrderUsingClientSkuIds(form);
             fail();
         }catch (ApiException e){
-            assertEquals("Client SKU ID(s) are empty at indexes: "+" ["+1+"]", e.getMessage());
+            assertEquals("Empty Client SKU ID(s) at indexes: "+" ["+1+"]", e.getMessage());
         }
 
 
@@ -289,7 +298,7 @@ public class OrderDtoTest extends AbstractUnitTest {
             dto.addOrderUsingClientSkuIds(form);
             fail();
         }catch (ApiException e){
-            assertEquals("Client SKU ID(s) are being repeated at indexes: "+" ["+2+"]", e.getMessage());
+            assertEquals("Duplicate Client SKU ID(s): "+" [\""+orderItems1.getClientSkuId()+"\"]", e.getMessage());
         }
 
     }
@@ -315,6 +324,9 @@ public class OrderDtoTest extends AbstractUnitTest {
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
 
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
+
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId("hdgsfhfhgdggdggdgdgdgdgdgdggdg"
                 , 40L, productPojo.getProductMrp());
         OrderWithClientSkuIdForm form = createOrderWithClientSkuIdForm(partyPojoClient.getPartyId(), "abcbca"
@@ -324,7 +336,7 @@ public class OrderDtoTest extends AbstractUnitTest {
             dto.addOrderUsingClientSkuIds(form);
             fail();
         }catch (ApiException e){
-            assertEquals("Client SKU ID(s) don't exist"+" [\""+"hdgsfhfhgdggdggdgdgdgdgdgdggdg"+"\"]", e.getMessage());
+            assertEquals("Client SKU ID(s) not found: "+" [\""+"hdgsfhfhgdggdggdgdgdgdgdgdggdg"+"\"]", e.getMessage());
         }
 
 
@@ -354,6 +366,9 @@ public class OrderDtoTest extends AbstractUnitTest {
             InventoryPojo inventoryPojo = createInventoryPojo(productPojo.getGlobalSkuId(), 100L,
                     0L, 0L);
             inventoryDao.insert(inventoryPojo);
+
+            ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+            channelDao.insert(channelPojo);
 
             OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                     , 40L, productPojo.getProductMrp());
@@ -394,6 +409,9 @@ public class OrderDtoTest extends AbstractUnitTest {
         InventoryPojo inventoryPojo = createInventoryPojo(productPojo.getGlobalSkuId(), 100L,
                 0L, 0L);
         inventoryDao.insert(inventoryPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
@@ -436,6 +454,9 @@ public class OrderDtoTest extends AbstractUnitTest {
         InventoryPojo inventoryPojo = createInventoryPojo(productPojo.getGlobalSkuId(), 30L,
                 0L, 0L);
         inventoryDao.insert(inventoryPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
@@ -535,7 +556,7 @@ public class OrderDtoTest extends AbstractUnitTest {
             dto.addOrderUsingChannelSkuIds(form);
             fail();
         }catch(ApiException e){
-            assertEquals("Channel SKU ID(s) don't exist"+" [\""+"1CHskuid   "+"\"]", e.getMessage());
+            assertEquals("Channel SKU ID(s) not found: "+" [\""+"1CHskuid   "+"\"]", e.getMessage());
         }
 
     }
@@ -702,7 +723,7 @@ public class OrderDtoTest extends AbstractUnitTest {
             dto.addOrderUsingChannelSkuIds(form);
             fail();
         }catch(ApiException e){
-            assertEquals("Channel SKU ID(s) are empty at indexes: "+" ["+1+"]", e.getMessage());
+            assertEquals("Empty Channel SKU ID(s) at indexes: "+" ["+1+"]", e.getMessage());
         }
 
     }
@@ -743,7 +764,8 @@ public class OrderDtoTest extends AbstractUnitTest {
             dto.addOrderUsingChannelSkuIds(form);
             fail();
         }catch(ApiException e){
-            assertEquals("Channel SKU ID(s) are being repeated at indexes: "+" ["+2+"]", e.getMessage());
+            assertEquals("Duplicate Channel SKU ID(s): "+" [\""+orderItems1.getChannelSkuId()+"\"]",
+                    e.getMessage());
         }
 
     }
@@ -785,7 +807,7 @@ public class OrderDtoTest extends AbstractUnitTest {
             dto.addOrderUsingChannelSkuIds(form);
             fail();
         }catch(ApiException e){
-            assertEquals("Channel SKU ID(s) don't exist"+" [\""+"babaabab"+"\"]", e.getMessage());
+            assertEquals("Channel SKU ID(s) not found: "+" [\""+"babaabab"+"\"]", e.getMessage());
         }
 
     }
@@ -807,6 +829,9 @@ public class OrderDtoTest extends AbstractUnitTest {
 
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
@@ -839,13 +864,16 @@ public class OrderDtoTest extends AbstractUnitTest {
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
 
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
+
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
         OrderWithClientSkuIdForm form = createOrderWithClientSkuIdForm(partyPojoClient.getPartyId(), "abcbca"
                 , partyPojoCustomer.getPartyId(), Arrays.asList(new OrderItemWithClientSkuId[]{orderItems1}));
 
         dto.addOrderUsingClientSkuIds(form);
-        OrderSearchForm form1 = createOrderSearchForm("2022-04-01", "2022-04-01", null, "", OrderStatus.CREATED);
+        OrderSearchForm form1 = createOrderSearchForm("", "", null, "abcbca", OrderStatus.CREATED);
         List<OrderData> data = dto.searchOrder(form1);
 
         assertEquals(form.getChannelOrderId(), data.get(0).getChannelOrderId());
@@ -869,6 +897,9 @@ public class OrderDtoTest extends AbstractUnitTest {
 
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
@@ -904,6 +935,9 @@ public class OrderDtoTest extends AbstractUnitTest {
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
 
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
+
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
         OrderWithClientSkuIdForm form = createOrderWithClientSkuIdForm(partyPojoClient.getPartyId(), "abcbca"
@@ -937,6 +971,9 @@ public class OrderDtoTest extends AbstractUnitTest {
 
         BinSkuPojo binSkuPojo = createBinSkuPojo(100L, productPojo.getGlobalSkuId(), pojoList.get(0).getBinId());
         binSkuDao.insert(binSkuPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());
@@ -977,6 +1014,9 @@ public class OrderDtoTest extends AbstractUnitTest {
         InventoryPojo inventoryPojo = createInventoryPojo(productPojo.getGlobalSkuId(), 100L,
                 0L, 0L);
         inventoryDao.insert(inventoryPojo);
+
+        ChannelPojo channelPojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        channelDao.insert(channelPojo);
 
         OrderItemWithClientSkuId orderItems1 = createOrderItemWithClientSkuId(productPojo.getClientSkuId()
                 , 40L, productPojo.getProductMrp());

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static com.increff.assure.spring.TestPojo.createChannelForm;
+import static com.increff.assure.spring.TestPojo.createChannelPojo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -100,9 +101,9 @@ public class ChannelDtoTest extends AbstractUnitTest {
     @Test
     public void testGetAllChannels() throws ApiException {
 
-        List<ChannelData> data_before = dto.getAllChannels();
-        ChannelForm form = getChannelForm();
-        dto.add(form);
+        List<ChannelPojo> data_before = dao.selectAll();
+        ChannelPojo pojo = createChannelPojo("internal", Invoice.InvoiceType.SELF);
+        dao.insert(pojo);
         List<ChannelData> data_after = dto.getAllChannels();
 
         assertEquals(data_before.size()+1, data_after.size());

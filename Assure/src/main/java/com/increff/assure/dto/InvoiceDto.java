@@ -2,7 +2,7 @@ package com.increff.assure.dto;
 
 import com.increff.assure.pojo.*;
 import com.increff.assure.service.*;
-import com.increff.assure.spring.AssureAppProperties;
+import com.increff.assure.spring.ClientWrapper;
 import com.increff.commons.Constants.Invoice;
 import com.increff.commons.Constants.OrderStatus;
 import com.increff.commons.Data.ChannelInvoiceData;
@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,8 +91,8 @@ public class InvoiceDto {
             ChannelPojo channelPojo = channelService.getChannel(orderPojo.getChannelId());
             PartyPojo partyPojoClient = partyService.get(orderPojo.getClientId());
             PartyPojo partyPojoCustomer = partyService.get(orderPojo.getCustomerId());
-            return convertToInvoiceData(channelPojo.getChannelName(), partyPojoClient.getPartyName(),
-                   partyPojoCustomer.getPartyName(), pojos, globalSkuToProduct);
+            return convertToInvoiceData(channelPojo.getChannelName(),orderPojo.getChannelOrderId(),
+                    partyPojoClient.getPartyName(), partyPojoCustomer.getPartyName(), pojos, globalSkuToProduct);
         }
 
     @Transactional(rollbackOn = ApiException.class)
@@ -117,13 +116,14 @@ public class InvoiceDto {
         Map<Long, String> globalSkuToChannelSku = channelListingService.getByChannelIdAndGlobalSkuIds(orderPojo.getChannelId(),
                 globalSkuIds);
 
-        return convertToChannelInvoiceData(channelPojo.getChannelName(), partyPojoClient.getPartyName(),
-                partyPojoCustomer.getPartyName(), pojos, globalSkuToProduct, globalSkuToChannelSku);
+        return convertToChannelInvoiceData(channelPojo.getChannelName(), orderPojo.getChannelOrderId(),
+                partyPojoClient.getPartyName(), partyPojoCustomer.getPartyName(), pojos, globalSkuToProduct,
+                globalSkuToChannelSku);
     }
 
 
 
-    public InvoiceResponse generateInvoiceInChannelApp(ChannelInvoiceData invoiceData) throws IOException {
+    private InvoiceResponse generateInvoiceInChannelApp(ChannelInvoiceData invoiceData) throws IOException {
         String url = clientWrapper.postForInvoiceInChannelApp(invoiceData);
 
         Path pdfPath = Paths.get(url);

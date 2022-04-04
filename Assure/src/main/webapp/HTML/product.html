@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lan="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="snippets.html :: name_head"></head>
+<head th:replace="snippets_product.html :: name_head"></head>
 <body>
 
-<nav th:replace="snippets.html :: name_navbar"></nav>
+<nav th:replace="snippets_product.html :: name_navbar"></nav>
 <header>
   <div class="toast align-items-center text-white border border-danger"
        style="position: fixed; background-color: rgb(196, 0, 0); z-index: 1056; top: 10px; right: 10px;"
@@ -16,7 +16,7 @@
 
 </header>
 
-<div class = "container-fluid" style="position:absolute; top: 21%;  width:100%;">
+<div class = "container-fluid" style="position:absolute; top: 17%;  width:100%;">
 <div class="custom-select" style="width:500px;">
   <label for="inputClientIdSearch" class="row-sm-2" style="position: absolute; top: 24%; right:48%;">
     <strong>Client </strong></label>
@@ -167,7 +167,7 @@
           <form>
             <div class="col">
               <label for="inputClientId" class="col-sm-2 col-form-label" style="width:150px;">
-                <strong>Client Name</strong>></label>
+                <strong>Client Name</strong></label>
               <div class="custom-select" style="width:500px;">
                 <select class="selection"id="inputClientId" name="clientId"></select>
               </div>

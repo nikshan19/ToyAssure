@@ -1,8 +1,12 @@
 package com.increff.assure.spring;
 
+import com.increff.commons.Constants.Invoice;
 import com.increff.commons.Constants.OrderStatus;
+import com.increff.commons.Constants.Party;
+import com.increff.commons.Data.ChannelData;
 import com.increff.commons.Data.ChannelInvoiceData;
 import com.increff.commons.Data.OrderData;
+import com.increff.commons.Data.PartyData;
 import com.increff.commons.Form.OrderSearchForm;
 import com.increff.commons.Form.OrderWithChannelSkuIdForm;
 import org.hibernate.criterion.Order;
@@ -52,5 +56,21 @@ public class TestPojo {
         form.setStartDate(startDate);
         form.setOrderStatus(status);
         return form;
+    }
+
+    public static ChannelData createChannelData(Long id, String name, Invoice.InvoiceType invoiceType){
+        ChannelData data = new ChannelData();
+        data.setId(id);
+        data.setChannelName(name);
+        data.setInvoiceType(invoiceType);
+        return data;
+    }
+
+    public static PartyData createPartyData(Long id, String partyName, Party.PartyType partyType){
+        PartyData data = new PartyData();
+        data.setPartyId(id);
+        data.setPartyName(partyName);
+        data.setPartyType(partyType);
+        return data;
     }
 }

@@ -1,15 +1,15 @@
 package com.increff.assure.spring;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
+import org.hibernate.annotations.Filter;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
 
-@ComponentScan("com.increff.assure")
+@ComponentScan(value = {"com.increff.assure"},
+        excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = SpringConfig.class)})
+
 @PropertySources({ //
         @PropertySource("classpath:Test.properties") //
 })
